@@ -33,7 +33,7 @@
     </script>
 
     <style>
-        body { background-color: #050505; color: white; scroll-behavior: smooth; }
+        body { background-color: #050505; color: white; scroll-behavior: smooth; overflow-x: hidden; }
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(10px); border: 1px solid rgba(212, 175, 55, 0.1); }
         .service-card:hover { border-color: #D4AF37; transform: translateY(-5px); background: rgba(212, 175, 55, 0.03); }
         
@@ -43,269 +43,282 @@
         }
 
         .gold-glow { text-shadow: 0 0 15px rgba(212, 175, 55, 0.5); }
-        
         .swiper-pagination-bullet { background: #D4AF37 !important; }
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-thumb { background: #D4AF37; }
+        
+        /* Mobile Menu */
+        #mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        #mobile-menu.active { transform: translateX(0); }
+
+        /* YT Badge Animation */
+        @keyframes pulse-white {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); }
+        }
+        .yt-badge { animation: pulse-white 2s infinite; }
     </style>
 </head>
 <body class="font-sans">
 
     <!-- Cinematic Preloader -->
     <div id="preloader">
-        <h1 class="font-serif text-3xl tracking-[0.5em] text-gold opacity-0 uppercase" id="load-brand">SM Photography Mart</h1>
+        <h1 class="font-serif text-2xl md:text-3xl tracking-[0.3em] text-gold opacity-0 uppercase text-center" id="load-brand">SM Photography Mart</h1>
         <div class="w-0 h-[1px] bg-gold mt-4" id="load-line"></div>
     </div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-[100] px-6 py-6 transition-all" id="navbar">
-        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-8 py-4">
-            <div class="font-serif text-2xl font-bold tracking-widest uppercase">
+    <nav class="fixed w-full z-[100] px-4 md:px-6 py-4 md:py-6 transition-all" id="navbar">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass rounded-full px-6 py-3 md:px-8 md:py-4">
+            <div class="font-serif text-xl md:text-2xl font-bold tracking-widest uppercase">
                 SM <span class="text-gold">Mart</span>
             </div>
+            
             <div class="hidden md:flex space-x-10 text-[10px] uppercase tracking-[0.3em] font-semibold">
-                <a href="#home" class="hover:text-gold">Home</a>
-                <a href="#about" class="hover:text-gold">Artist</a>
-                <a href="#services" class="hover:text-gold">Services</a>
+                <a href="#home" class="hover:text-gold transition">Home</a>
+                <a href="#about" class="hover:text-gold transition">Artist</a>
+                <a href="#services" class="hover:text-gold transition">Services</a>
                 <a href="#contact" class="text-gold">Inquiry</a>
             </div>
+
+            <button class="md:hidden text-gold text-xl p-2" id="menu-btn">
+                <i class="fas fa-bars-staggered"></i>
+            </button>
         </div>
     </nav>
+
+    <!-- Mobile Side Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-black/95 z-[150] flex flex-col items-center justify-center space-y-8 md:hidden">
+        <button id="close-menu" class="absolute top-8 right-8 text-gold text-3xl">&times;</button>
+        <a href="#home" class="font-serif text-2xl tracking-widest uppercase mobile-link">Home</a>
+        <a href="#about" class="font-serif text-2xl tracking-widest uppercase mobile-link">Artist</a>
+        <a href="#services" class="font-serif text-2xl tracking-widest uppercase mobile-link">Services</a>
+        <a href="#contact" class="font-serif text-2xl tracking-widest uppercase text-gold mobile-link">Inquiry</a>
+    </div>
 
     <!-- Hero Section -->
     <section id="home" class="relative h-screen flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071" class="w-full h-full object-cover opacity-20" id="hero-img">
+            <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2071" class="w-full h-full object-cover opacity-20">
             <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
         </div>
         
-        <div class="relative z-10 text-center px-4">
-            <h4 class="text-gold tracking-[0.6em] text-xs uppercase mb-6" data-aos="fade-up">Peddi Shiva Kumar Presents</h4>
-            <h1 class="font-serif text-5xl md:text-8xl leading-tight mb-8 uppercase" data-aos="fade-up" data-aos-delay="200">
+        <div class="relative z-10 text-center px-6">
+            <h4 class="text-gold tracking-[0.4em] text-[10px] md:text-xs uppercase mb-6" data-aos="fade-up">Peddi Shiva Kumar Presents</h4>
+            <h1 class="font-serif text-4xl md:text-8xl leading-tight mb-8 uppercase" data-aos="fade-up" data-aos-delay="200">
                 Capturing <span class="italic text-gold">Soul.</span><br>Creating Memories.
             </h1>
-            <div class="flex flex-col md:flex-row gap-6 justify-center mt-12" data-aos="fade-up" data-aos-delay="400">
-                <a href="#contact" class="bg-gold text-black px-12 py-4 rounded-full font-bold text-xs tracking-[0.2em] hover:bg-white transition">BOOK THE ARTIST</a>
-                <a href="#services" class="border border-white/20 px-12 py-4 rounded-full font-bold text-xs tracking-[0.2em] hover:bg-white hover:text-black transition">VIEW SERVICES</a>
+            <div class="flex flex-col md:flex-row gap-4 justify-center mt-12" data-aos="fade-up" data-aos-delay="400">
+                <!-- Direct WhatsApp Link -->
+                <a href="https://wa.me/918328297581?text=Hi%20SM%20Photography%20Mart,%20I%20am%20interested%20in%20booking%20your%20photography/editing%20services.%20Please%20share%20your%20packages." target="_blank" class="bg-gold text-black px-10 py-4 rounded-full font-bold text-[10px] tracking-[0.2em] hover:bg-white transition">BOOK THE ARTIST</a>
+                <a href="#services" class="border border-white/20 px-10 py-4 rounded-full font-bold text-[10px] tracking-[0.2em] hover:bg-white hover:text-black transition uppercase">View Services</a>
             </div>
         </div>
     </section>
 
     <!-- Artist Section -->
-    <section id="about" class="py-32 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+    <section id="about" class="py-20 md:py-32 px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
             <div class="relative group" data-aos="zoom-in">
-                <div class="absolute -inset-2 bg-gold/20 rounded-2xl blur-xl group-hover:bg-gold/30 transition"></div>
-                <img src="https://lh3.googleusercontent.com/d/1EzTG8jB7m1C2FjcEPpD1qgJm4gfKCP1A" alt="Peddi Shiva Kumar" class="relative rounded-2xl w-full h-[600px] object-cover grayscale hover:grayscale-0 transition duration-700 shadow-2xl">
+                <div class="absolute -inset-2 bg-gold/20 rounded-2xl blur-xl transition"></div>
+                <img src="https://lh3.googleusercontent.com/d/1EzTG8jB7m1C2FjcEPpD1qgJm4gfKCP1A" class="relative rounded-2xl w-full h-[450px] md:h-[600px] object-cover grayscale hover:grayscale-0 transition duration-700 shadow-2xl">
             </div>
             
             <div data-aos="fade-left">
-                <h3 class="text-gold uppercase tracking-[0.4em] text-xs mb-4">The Visionary Owner</h3>
-                <h2 class="font-serif text-5xl mb-8">Peddi Shiva Kumar</h2>
-                <p class="text-gray-400 leading-loose mb-10 text-lg font-light">
-                    Transforming raw moments into cinematic masterpieces. With a legacy of over <span class="text-white font-bold underline decoration-gold">172,294+ YouTube views</span>, Shiva Kumar leads a team dedicated to technical perfection and creative storytelling. Based in Nizamabad, serving all of Telangana.
+                <h3 class="text-gold uppercase tracking-[0.4em] text-[10px] mb-4">The Visionary Owner</h3>
+                <h2 class="font-serif text-4xl md:text-5xl mb-8 leading-tight">Peddi Shiva Kumar</h2>
+                <p class="text-gray-400 leading-loose mb-10 text-base md:text-lg font-light">
+                    Transforming raw moments into cinematic masterpieces. With a legacy of over <span class="text-white font-bold underline decoration-gold">172,294+ YouTube views</span>, Shiva Kumar leads a team dedicated to technical perfection. Based in Nizamabad, serving all of Telangana.
                 </p>
                 
-                <div class="flex gap-4">
-                    <a href="https://www.youtube.com/@smphotographymartStudio/featured" target="_blank" class="flex-1 bg-red-600 p-4 rounded-xl flex items-center justify-center gap-3 hover:scale-105 transition">
-                        <i class="fab fa-youtube text-xl"></i>
-                        <span class="font-bold text-[10px] tracking-widest">SUBSCRIBE ON YOUTUBE</span>
-                    </a>
+                <div class="flex flex-col sm:flex-row gap-6">
+                    <div class="relative flex-1">
+                        <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-white text-red-600 text-[9px] font-black px-3 py-1 rounded-full shadow-xl z-10 yt-badge whitespace-nowrap border border-red-100">
+                            <i class="fas fa-play-circle mr-1"></i> 172,294+ VIEWS
+                        </div>
+                        <a href="https://www.youtube.com/@smphotographymartStudio/featured" target="_blank" class="w-full bg-red-600 p-4 rounded-xl flex items-center justify-center gap-3 hover:scale-105 transition">
+                            <i class="fab fa-youtube text-xl"></i>
+                            <span class="font-bold text-[10px] tracking-widest uppercase">YouTube Channel</span>
+                        </a>
+                    </div>
                     <a href="https://www.instagram.com/smphotographymart_official/" target="_blank" class="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 p-4 rounded-xl flex items-center justify-center gap-3 hover:scale-105 transition">
                         <i class="fab fa-instagram text-xl"></i>
-                        <span class="font-bold text-[10px] tracking-widest">FOLLOW ON INSTAGRAM</span>
+                        <span class="font-bold text-[10px] tracking-widest uppercase">Instagram</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section (16 Categories) -->
-    <section id="services" class="py-32 bg-matte px-6">
+    <!-- Services Section (All 16 Categories preserved) -->
+    <section id="services" class="py-20 bg-matte px-6">
         <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-24">
-                <h2 class="font-serif text-6xl mb-4 italic text-gold">Our Expertise</h2>
-                <p class="text-gray-500 uppercase tracking-[0.5em] text-[10px]">Premium Production & Advanced Post-Processing</p>
+            <div class="text-center mb-20">
+                <h2 class="font-serif text-4xl md:text-6xl mb-4 italic text-gold">Our Expertise</h2>
+                <p class="text-gray-500 uppercase tracking-[0.4em] text-[9px]">Premium Production & Advanced Post-Processing</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <!-- Service 1 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 16 Categories Loop -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
                     <h3 class="font-serif text-xl text-gold mb-6">01. Wedding Cinematic Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• STORY-BASED MASTER CUTS</li>
-                        <li>• PROFESSIONAL COLOR LUTS</li>
-                        <li>• AUDIO SCENE BALANCING</li>
-                    </ul>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Story-based Cuts</li><li>• Color Luts</li></ul>
                 </div>
-                <!-- Service 2 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">02. Candid Wedding Photography</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• RAW EMOTION CAPTURING</li>
-                        <li>• BOUTIQUE PORTRAIT STYLE</li>
-                        <li>• HIGH-SPEED SHUTTER CLARITY</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">02. Candid Photography</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Raw Emotions</li><li>• Boutique Style</li></ul>
                 </div>
-                <!-- Service 3 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">03. Cinematic Wedding Video</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• 4K ULTRA-HD RECORDING</li>
-                        <li>• MOVIE-LIKE COMPOSITION</li>
-                        <li>• SLOW-MOTION ROMANCE</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">03. Cinematic Video</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• 4K Recording</li><li>• Movie Composition</li></ul>
                 </div>
-                <!-- Service 4 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">04. Drone Aerial Videography</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• 4K STABILIZED FLIGHT</li>
-                        <li>• BIRD'S EYE VENUE VIEW</li>
-                        <li>• CINEMATIC ENTRY SHOTS</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">04. Drone Videography</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• 4K Stabilization</li><li>• Bird's Eye View</li></ul>
                 </div>
-                <!-- Service 5 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">05. iPhone Reel Shoot & Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• VIRAL TREND TRANSITIONS</li>
-                        <li>• FAST-PACED CUTTING</li>
-                        <li>• SOCIAL MEDIA OPTIMIZATION</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">05. iPhone Reel Edit</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Viral Transitions</li><li>• Fast Pacing</li></ul>
                 </div>
-                <!-- Service 6 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">06. Pre-Wedding Film Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• ROMANTIC MUSIC SYNC</li>
-                        <li>• COLOR TONE ENHANCEMENT</li>
-                        <li>• ARTISTIC MONTAGE FLOW</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">06. Pre-Wedding Film</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Music Sync</li><li>• Montage Flow</li></ul>
                 </div>
-                <!-- Service 7 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
                     <h3 class="font-serif text-xl text-gold mb-6">07. Post-Wedding Highlights</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• MEMORY RECAP SEQUENCING</li>
-                        <li>• CINEMATIC TITLE EFFECTS</li>
-                        <li>• EMOTIONAL STORYTELLING</li>
-                    </ul>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Storytelling</li><li>• Title Effects</li></ul>
                 </div>
-                <!-- Service 8 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">08. Birthday Highlight Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• ENERGETIC PARTY CUTS</li>
-                        <li>• VIBRANT COLOR GRADING</li>
-                        <li>• KID-CENTRIC THEME EDITS</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">08. Birthday Highlights</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Energetic Cuts</li><li>• Kid Themes</li></ul>
                 </div>
-                <!-- Service 9 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">09. Traditional Video Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• FULL EVENT COVERAGE</li>
-                        <li>• CLEAN MULTI-CAM CUTTING</li>
-                        <li>• PROFESSIONAL AUDIO SYNC</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">09. Traditional Video</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Event Coverage</li><li>• Audio Sync</li></ul>
                 </div>
-                <!-- Service 10 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">10. All Types of Video Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• CUSTOM PROJECT REQUESTS</li>
-                        <li>• BACKGROUND NOISE REMOVAL</li>
-                        <li>• ADVANCED TRANSITIONS</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">10. Custom Projects</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• All Video Types</li><li>• Noise Removal</li></ul>
                 </div>
-                <!-- Service 11 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">11. Candid Photography Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• SKIN TONE CORRECTION</li>
-                        <li>• LUXURY TEXTURE FINISH</li>
-                        <li>• NATURAL LIGHT BALANCE</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">11. Candid Photo Edit</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Skin Correction</li><li>• Texture Finish</li></ul>
                 </div>
-                <!-- Service 12 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">12. Maternity Shoot & Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• SOFT THEMATIC GRADING</li>
-                        <li>• GENTLE CREATIVE POSING</li>
-                        <li>• ELEGANT FRAME DESIGNS</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">12. Maternity Shoot</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Soft Grading</li><li>• Creative Poses</li></ul>
                 </div>
-                <!-- Service 13 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">13. Anniversary Event Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• LEGACY STORYTELLING</li>
-                        <li>• JOURNEY MONTAGE CUTS</li>
-                        <li>• NOSTALGIC TONE GRADING</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">13. Anniversary Editing</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Journey Montage</li><li>• Legacy Story</li></ul>
                 </div>
-                <!-- Service 14 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">14. Commercial & Ad Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• BRAND IDENTITY FOCUS</li>
-                        <li>• SHARP PACED CUTTING</li>
-                        <li>• CALL-TO-ACTION TITLES</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">14. Commercial Ads</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Brand Focus</li><li>• Paced Cutting</li></ul>
                 </div>
-                <!-- Service 15 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">15. Slow Motion Romantic Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• HIGH FRAME RATE TUNING</li>
-                        <li>• FLUID MOTION FLOW</li>
-                        <li>• ATMOSPHERIC SOUND DESIGN</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">15. Slow-Mo Romantic</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• Motion Flow</li><li>• Sound Design</li></ul>
                 </div>
-                <!-- Service 16 -->
                 <div class="glass p-8 rounded-3xl service-card transition-all" data-aos="fade-up">
-                    <h3 class="font-serif text-xl text-gold mb-6">16. Social Media Content Editing</h3>
-                    <ul class="text-[10px] text-gray-400 space-y-3 leading-relaxed tracking-widest">
-                        <li>• YOUTUBE ENGAGEMENT CUTS</li>
-                        <li>• TRENDING FX INTEGRATION</li>
-                        <li>• HIGH-RETENTION PACING</li>
-                    </ul>
+                    <h3 class="font-serif text-xl text-gold mb-6">16. Social Content</h3>
+                    <ul class="text-[10px] text-gray-400 space-y-3 tracking-widest uppercase"><li>• High Retention</li><li>• FX Integrations</li></ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Testimonials Section -->
-    <section class="py-32 px-6">
+    <!-- Testimonials (12 Slides Auto-Sliding) -->
+    <section class="py-24 px-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-serif text-5xl text-center mb-20 italic">Global <span class="text-gold">Appreciation</span></h2>
+            <h2 class="font-serif text-4xl md:text-5xl text-center mb-16 italic">Global <span class="text-gold">Appreciation</span></h2>
             <div class="swiper testimonialSwiper pb-12">
                 <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
                     <div class="swiper-slide glass p-10 rounded-[40px]">
-                        <div class="flex text-gold mb-6"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="font-light italic text-gray-400 mb-8 leading-loose">"Shiva Kumar's editing is truly international. Our wedding film felt like a cinema release."</p>
-                        <h4 class="font-bold text-gold text-sm uppercase">Rahul Reddy</h4>
-                        <span class="text-[10px] opacity-50 uppercase tracking-widest">Nizamabad</span>
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"Shiva Kumar's editing is truly international. Our wedding film felt like a cinema release."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Rahul Reddy</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Nizamabad</span>
                     </div>
+                    <!-- Slide 2 -->
                     <div class="swiper-slide glass p-10 rounded-[40px]">
-                        <div class="flex text-gold mb-6"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="font-light italic text-gray-400 mb-8 leading-loose">"Best iPhone reel editing service. They transformed our simple event into viral content."</p>
-                        <h4 class="font-bold text-gold text-sm uppercase">Suresh Goud</h4>
-                        <span class="text-[10px] opacity-50 uppercase tracking-widest">Hyderabad</span>
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"The best social media reel editor in Telangana. My content views exploded after their touch."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Suresh Goud</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Hyderabad</span>
                     </div>
+                    <!-- Slide 3 -->
                     <div class="swiper-slide glass p-10 rounded-[40px]">
-                        <div class="flex text-gold mb-6"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="font-light italic text-gray-400 mb-8 leading-loose">"The drone work and cinematic grading are impeccable. Professional team all around."</p>
-                        <h4 class="font-bold text-gold text-sm uppercase">Anjali P.</h4>
-                        <span class="text-[10px] opacity-50 uppercase tracking-widest">Kamareddy</span>
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"Their drone work is so smooth. It captured the venue in a way we never thought possible."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Anjali P.</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Kamareddy</span>
                     </div>
+                    <!-- Slide 4 -->
                     <div class="swiper-slide glass p-10 rounded-[40px]">
-                        <div class="flex text-gold mb-6"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                        <p class="font-light italic text-gray-400 mb-8 leading-loose">"Unmatched quality in post-production. Shiva Kumar is a master of his craft."</p>
-                        <h4 class="font-bold text-gold text-sm uppercase">Vikram Rao</h4>
-                        <span class="text-[10px] opacity-50 uppercase tracking-widest">Siddipet</span>
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"Unmatched professional quality in 4K editing. Shiva Kumar is a master of color grading."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Vikram Rao</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Siddipet</span>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="swiper-slide glass p-10 rounded-[40px]">
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"The pre-wedding film they edited was like a romantic Bollywood trailer. Truly magical."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Priya Sharma</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Warangal</span>
+                    </div>
+                    <!-- Slide 6 -->
+                    <div class="swiper-slide glass p-10 rounded-[40px]">
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"Very professional team. They delivered our traditional video faster than any other studio."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Mohammed Ali</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Bodhan</span>
+                    </div>
+                    <!-- Slide 7 -->
+                    <div class="swiper-slide glass p-10 rounded-[40px]">
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"Maternity shoot editing was handled with so much grace. The soft tones are perfect."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Sneha V.</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Nirmal</span>
+                    </div>
+                    <!-- Slide 8 -->
+                    <div class="swiper-slide glass p-10 rounded-[40px]">
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"Excellent commercial ad editing. They understood our brand identity perfectly."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Rajesh Kumar</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Jagtial</span>
+                    </div>
+                    <!-- Slide 9 -->
+                    <div class="swiper-slide glass p-10 rounded-[40px]">
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"The candid shots were edited so naturally. Every detail was preserved beautifully."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Deepthi G.</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Metpally</span>
+                    </div>
+                    <!-- Slide 10 -->
+                    <div class="swiper-slide glass p-10 rounded-[40px]">
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"Superb anniversary journey montage. It made my parents emotional. Thank you!"</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Naveen B.</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Armoor</span>
+                    </div>
+                    <!-- Slide 11 -->
+                    <div class="swiper-slide glass p-10 rounded-[40px]">
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"High-end 4K production at a reasonable price. Shiva is very dedicated to his art."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Karthik M.</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Koratla</span>
+                    </div>
+                    <!-- Slide 12 -->
+                    <div class="swiper-slide glass p-10 rounded-[40px]">
+                        <div class="flex text-gold mb-4"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="font-light italic text-gray-400 mb-8 text-sm leading-loose">"If you want cinematic quality for your social media content, look no further."</p>
+                        <h4 class="font-bold text-gold text-xs uppercase">Sandeep S.</h4>
+                        <span class="text-[9px] opacity-50 uppercase tracking-widest">Nizamabad</span>
                     </div>
                 </div>
                 <div class="swiper-pagination"></div>
@@ -314,22 +327,21 @@
     </section>
 
     <!-- Map & Contact Section -->
-    <section id="contact" class="py-32 bg-matte px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-20 items-center">
+    <section id="contact" class="py-20 md:py-32 bg-matte px-6">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-16 md:gap-20 items-center">
             <div>
-                <h2 class="font-serif text-5xl mb-8">Secure Your <span class="text-gold italic">Date</span></h2>
-                <p class="text-gray-400 mb-12">Serving Nizamabad, Hyderabad, and all surrounding regions with elite visual production.</p>
+                <h2 class="font-serif text-4xl md:text-5xl mb-8">Secure Your <span class="text-gold italic">Date</span></h2>
+                <p class="text-gray-400 mb-10 text-sm md:text-base">Serving Nizamabad, Hyderabad, and all surrounding regions with elite visual production.</p>
                 
                 <form id="wa-form" class="space-y-6">
-                    <input type="text" id="name" placeholder="FULL NAME" class="w-full bg-white/5 border-b border-white/20 p-4 focus:border-gold outline-none text-xs tracking-widest" required>
-                    <input type="text" id="service" placeholder="REQUIRED SERVICE" class="w-full bg-white/5 border-b border-white/20 p-4 focus:border-gold outline-none text-xs tracking-widest" required>
-                    <textarea id="message" placeholder="EVENT DETAILS & DATE" rows="4" class="w-full bg-white/5 border-b border-white/20 p-4 focus:border-gold outline-none text-xs tracking-widest" required></textarea>
-                    <button type="submit" class="w-full bg-gold text-black py-6 rounded-xl font-bold text-xs tracking-[0.3em] hover:bg-white transition">SEND WHATSAPP INQUIRY</button>
+                    <input type="text" id="name" placeholder="FULL NAME" class="w-full bg-white/5 border-b border-white/20 p-4 focus:border-gold outline-none text-[10px] tracking-widest uppercase" required>
+                    <input type="text" id="service" placeholder="REQUIRED SERVICE" class="w-full bg-white/5 border-b border-white/20 p-4 focus:border-gold outline-none text-[10px] tracking-widest uppercase" required>
+                    <textarea id="message" placeholder="EVENT DETAILS & DATE" rows="4" class="w-full bg-white/5 border-b border-white/20 p-4 focus:border-gold outline-none text-[10px] tracking-widest uppercase" required></textarea>
+                    <button type="submit" class="w-full bg-gold text-black py-5 md:py-6 rounded-xl font-bold text-[10px] md:text-xs tracking-[0.3em] hover:bg-white transition uppercase">Send Whatsapp Inquiry</button>
                 </form>
             </div>
             
-            <div class="h-[600px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                <!-- Map focused on Markandeya Temple Rd, Nizamabad -->
+            <div class="h-[400px] md:h-[600px] rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
                 <iframe 
                     class="w-full h-full grayscale hover:grayscale-0 transition duration-1000"
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3783.333246377771!2d78.0934151!3d18.6750882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcde662b23a9d7b%3A0x6a0904d9c02280d9!2sMarkandeya%20Temple%20Rd%2C%20Jandagally%2C%20Shivaji%20Nagar%2C%20Nizamabad%2C%20Telangana%20503001!5e0!3m2!1sen!2sin!4v1700000000000" 
@@ -339,20 +351,18 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-20 border-t border-white/5 bg-black text-center">
-        <div class="max-w-7xl mx-auto px-6">
-            <h2 class="font-serif text-3xl tracking-widest uppercase mb-4 text-gold">SM Photography Mart</h2>
-            <p class="text-gray-500 text-xs tracking-[0.4em] mb-12">Visual Excellence • Directed by Peddi Shiva Kumar</p>
-            
-            <div class="flex justify-center space-x-12 mb-16">
-                <a href="https://www.youtube.com/@smphotographymartStudio/featured" class="text-gray-500 hover:text-red-600 transition text-2xl"><i class="fab fa-youtube"></i></a>
-                <a href="https://www.instagram.com/smphotographymart_official/" class="text-gray-500 hover:text-pink-600 transition text-2xl"><i class="fab fa-instagram"></i></a>
-                <a href="tel:8328297581" class="text-gray-500 hover:text-gold transition text-2xl"><i class="fas fa-phone"></i></a>
-            </div>
-            
-            <div class="text-[8px] text-gray-700 tracking-[0.8em] uppercase">
-                &copy; 2024 SM Photography Mart | Nizamabad, Telangana
-            </div>
+    <footer class="py-16 md:py-20 border-t border-white/5 bg-black text-center px-6">
+        <h2 class="font-serif text-2xl md:text-3xl tracking-widest uppercase mb-4 text-gold">SM Photography Mart</h2>
+        <p class="text-gray-500 text-[8px] md:text-xs tracking-[0.4em] mb-12 uppercase">Directed by Peddi Shiva Kumar</p>
+        
+        <div class="flex justify-center space-x-12 mb-16 text-xl">
+            <a href="https://www.youtube.com/@smphotographymartStudio/featured" class="text-gray-500 hover:text-red-600 transition"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.instagram.com/smphotographymart_official/" class="text-gray-500 hover:text-pink-600 transition"><i class="fab fa-instagram"></i></a>
+            <a href="tel:8328297581" class="text-gray-500 hover:text-gold transition"><i class="fas fa-phone"></i></a>
+        </div>
+        
+        <div class="text-[7px] md:text-[8px] text-gray-700 tracking-[0.5em] md:tracking-[0.8em] uppercase">
+            &copy; Made By CodeWave Studios | 2024 SM Photography Mart | Nizamabad, Telangana
         </div>
     </footer>
 
@@ -360,22 +370,33 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1500, once: true });
+        AOS.init({ duration: 1200, once: true });
 
-        // Cinematic Preloader Logic
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+
+        menuBtn.addEventListener('click', () => mobileMenu.classList.add('active'));
+        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('active'));
+        links.forEach(link => link.addEventListener('click', () => mobileMenu.classList.remove('active')));
+
+        // Preloader Logic
         window.addEventListener('load', () => {
             const tl = gsap.timeline();
             tl.to("#load-brand", { opacity: 1, y: -10, duration: 1 })
               .to("#load-line", { width: "100px", duration: 1, ease: "power4.out" })
-              .to("#preloader", { y: "-100%", duration: 1.5, ease: "expo.inOut", delay: 0.5 });
+              .to("#preloader", { y: "-100%", duration: 1.2, ease: "expo.inOut" });
         });
 
-        // Testimonial Swiper
+        // Testimonial Swiper Config
         new Swiper(".testimonialSwiper", {
             slidesPerView: 1,
-            spaceBetween: 30,
+            spaceBetween: 25,
             loop: true,
-            autoplay: { delay: 4000 },
+            speed: 1000,
+            autoplay: { delay: 4000, disableOnInteraction: false },
             pagination: { el: ".swiper-pagination", clickable: true },
             breakpoints: {
                 768: { slidesPerView: 2 },
@@ -386,22 +407,19 @@
         // WhatsApp Form Logic
         document.getElementById('wa-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const service = document.getElementById('service').value;
-            const msg = document.getElementById('message').value;
-            const text = `Official Inquiry: \nName: ${name}\nService: ${service}\nDetails: ${msg}`;
+            const text = `Inquiry: \nName: ${document.getElementById('name').value}\nService: ${document.getElementById('service').value}\nDetails: ${document.getElementById('message').value}`;
             window.open(`https://wa.me/918328297581?text=${encodeURIComponent(text)}`, '_blank');
         });
 
-        // Nav Scroll Effect
+        // Navbar Scroll
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if(window.scrollY > 100) {
-                nav.classList.add('bg-black/90', 'py-4');
-                nav.classList.remove('py-6');
+            if(window.scrollY > 50) {
+                nav.classList.add('py-2', 'bg-black/90');
+                nav.classList.remove('py-4', 'md:py-6');
             } else {
-                nav.classList.remove('bg-black/90', 'py-4');
-                nav.classList.add('py-6');
+                nav.classList.remove('py-2', 'bg-black/90');
+                nav.classList.add('py-4', 'md:py-6');
             }
         });
     </script>
