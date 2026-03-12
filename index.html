@@ -3,304 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SM Photography Mart | Luxury Wedding Cinematics</title>
+    <title>SM Photography Mart | Cinematic Wedding Films</title>
     
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Fonts: Luxury Cinematic Pairing -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
+        /* --- THE KALIEDITS PALETTE (STRICT: NO BLUE) --- */
         :root {
             --gold: #D4AF37;
             --black: #000000;
-            --dark: #0a0a0a;
+            --dark-grey: #0a0a0a;
+            --light-grey: #1a1a1a;
             --white: #ffffff;
             --transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
         }
 
-        /* Prevent Horizontal Shake */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        /* Reset & Screen Lock */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
         html, body { 
-            background: var(--black); 
+            background-color: var(--black); 
             color: var(--white); 
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
             width: 100%;
+            scroll-behavior: smooth;
         }
 
-        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
-        .gold-text { color: var(--gold); }
-        .container { width: 92%; max-width: 1400px; margin: 0 auto; }
-        
-        /* Smooth Scrolling */
-        html { scroll-behavior: smooth; }
+        /* FORCE KILL BLUE ON LINKS */
+        a { color: inherit; text-decoration: none; transition: var(--transition); }
+        a:hover, a:active, a:focus, a:visited { color: inherit; text-decoration: none; }
 
-        /* --- NAVIGATION --- */
+        h1, h2, h3, h4, .serif { font-family: 'Playfair Display', serif; font-weight: 400; }
+        .gold { color: var(--gold); }
+        .container { width: 90%; max-width: 1400px; margin: 0 auto; }
+
+        /* --- PRELOADER / SELECTION --- */
+        ::selection { background: var(--gold); color: #000; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--black); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); }
+
+        /* --- NAVIGATION (Kaliedits Style) --- */
         nav {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            padding: 30px 0; transition: var(--transition);
+            padding: 40px 0; transition: var(--transition);
         }
         nav.scrolled {
-            background: rgba(0,0,0,0.95); padding: 15px 0;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 20px 0; background: rgba(0,0,0,0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             backdrop-filter: blur(10px);
         }
-        .nav-flex { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 1.6rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
-        .nav-links { display: flex; gap: 35px; }
-        .nav-links a { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #fff; }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.2rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 40px; }
+        .nav-links a { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; font-weight: 400; }
         .nav-links a:hover { color: var(--gold); }
 
-        /* --- HERO --- */
+        /* --- HERO (EDITORIAL LAYOUT) --- */
         #hero {
             height: 100vh; display: flex; align-items: center; justify-content: center;
             text-align: center; position: relative;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.9)), 
-                        url('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=1920');
-            background-size: cover; background-position: center; background-attachment: fixed;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover; background-position: center;
         }
-        .hero-title { font-size: clamp(3rem, 12vw, 8rem); line-height: 0.85; margin-bottom: 30px; font-style: italic; }
-        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 14px; color: var(--gold); margin-bottom: 20px; display: block; }
+        .hero-title { font-size: clamp(3rem, 12vw, 9rem); line-height: 0.8; margin-bottom: 20px; font-style: italic; }
+        .hero-tag { letter-spacing: 12px; text-transform: uppercase; font-size: 12px; color: var(--gold); margin-bottom: 20px; display: block; }
         
         .btn {
-            display: inline-block; padding: 20px 50px; border: 1px solid var(--gold);
-            text-transform: uppercase; letter-spacing: 3px; font-size: 12px; color: #fff;
+            display: inline-block; padding: 22px 55px; border: 1px solid var(--gold);
+            text-transform: uppercase; letter-spacing: 4px; font-size: 11px; color: #fff;
             transition: var(--transition); cursor: pointer; background: transparent;
         }
         .btn-gold { background: var(--gold); color: #000; font-weight: 700; border: none; }
-        .btn:hover { transform: translateY(-10px); background: #fff; color: #000; border-color: #fff; }
+        .btn:hover { background: var(--white); color: #000; border-color: var(--white); transform: translateY(-10px); }
 
-        /* --- AWARDS SECTION (SEPARATE PHOTOS) --- */
+        /* --- THE AWARDS (SEPARATE LARGE FRAMES) --- */
         .awards-section { padding: 150px 0; background: var(--black); }
-        .award-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; margin-top: 80px; }
-        .award-card { position: relative; height: 650px; overflow: hidden; border: 1px solid #1a1a1a; }
-        .award-card img { width: 100%; height: 100%; object-fit: cover; transition: 1.5s; opacity: 0.7; }
-        .award-card:hover img { transform: scale(1.1); opacity: 1; }
-        .award-content {
-            position: absolute; inset: 0; padding: 50px;
-            display: flex; flex-direction: column; justify-content: flex-end;
+        .awards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 80px; }
+        .award-frame { position: relative; height: 700px; overflow: hidden; border: 1px solid #1a1a1a; }
+        .award-frame img { width: 100%; height: 100%; object-fit: cover; transition: 2s; filter: brightness(0.7); }
+        .award-label {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 60px;
             background: linear-gradient(to top, rgba(0,0,0,1), transparent);
         }
-        .award-content h3 { font-size: 2.2rem; color: var(--gold); line-height: 1.2; }
-        .award-content p { font-size: 12px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 10px; }
+        .award-label h3 { font-size: 2.5rem; color: var(--gold); margin-top: 10px; line-height: 1.1; }
+        .award-frame:hover img { transform: scale(1.1); filter: brightness(1); }
+        .award-frame:hover { border-color: var(--gold); }
 
-        /* --- SERVICES (6 SERVICES - ALL VISIBLE) --- */
-        #services { padding: 100px 0; background: #050505; }
-        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 60px; }
-        .service-item { 
-            height: 550px; position: relative; overflow: hidden; cursor: pointer; border: 1px solid #111;
-        }
-        .service-item img { width: 100%; height: 100%; object-fit: cover; transition: 1s; filter: brightness(0.6); }
+        /* --- SERVICES (HIGH VISIBILITY / FULL IMAGES) --- */
+        #services { padding: 120px 0; background: #050505; }
+        .service-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 80px; }
+        .service-card { position: relative; height: 550px; overflow: hidden; border: 1px solid #111; }
+        .service-card img { width: 100%; height: 100%; object-fit: cover; transition: 1s; opacity: 0.6; }
         .service-overlay {
-            position: absolute; inset: 0; padding: 40px;
-            display: flex; flex-direction: column; justify-content: flex-end;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            transition: var(--transition);
+            position: absolute; inset: 0; padding: 40px; display: flex; flex-direction: column; 
+            justify-content: flex-end; background: linear-gradient(to top, #000, transparent);
         }
-        .service-item:hover img { transform: scale(1.1); filter: brightness(0.9); }
-        .service-item:hover .service-overlay { background: rgba(212, 175, 55, 0.85); }
-        .service-item:hover h3, .service-item:hover p, .service-item:hover li { color: #000; }
-        .service-overlay h3 { font-size: 2rem; margin-bottom: 15px; color: var(--gold); }
-        .service-overlay ul { list-style: none; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        .service-card:hover img { opacity: 1; transform: scale(1.1); }
+        .service-card:hover .service-overlay { background: rgba(212, 175, 55, 0.9); }
+        .service-card:hover h3, .service-card:hover li { color: #000; font-weight: 700; }
+        .service-overlay h3 { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
+        .service-overlay ul { list-style: none; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
 
         /* --- REEL EDITS --- */
-        .reels-container { display: flex; gap: 20px; overflow-x: auto; padding: 60px 0; scrollbar-width: none; }
-        .reels-container::-webkit-scrollbar { display: none; }
-        .reel-box { min-width: 320px; height: 570px; background: #000; border: 1px solid #222; position: relative; }
-        .reel-box iframe { width: 100%; height: 100%; border: none; }
+        .reels-row { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 40px; scrollbar-width: none; }
+        .reels-row::-webkit-scrollbar { display: none; }
+        .reel-item { min-width: 330px; height: 580px; background: #000; border: 1px solid #222; }
+        .reel-item iframe { width: 100%; height: 100%; border: none; }
 
         /* --- PORTFOLIO (MASONRY) --- */
         .gallery { columns: 3 350px; column-gap: 20px; padding: 100px 0; }
-        .gallery-item { break-inside: avoid; margin-bottom: 20px; position: relative; overflow: hidden; }
-        .gallery-item img { width: 100%; display: block; transition: 0.8s; filter: brightness(0.8); }
-        .gallery-item:hover img { transform: scale(1.05); filter: brightness(1); }
+        .gallery-img { break-inside: avoid; margin-bottom: 20px; position: relative; overflow: hidden; border: 1px solid #111; }
+        .gallery-img img { width: 100%; display: block; transition: 1s; filter: grayscale(100%); }
+        .gallery-img:hover img { transform: scale(1.05); filter: grayscale(0%); }
 
-        /* --- TESTIMONIALS --- */
-        .t-slider { background: #080808; padding: 100px 0; overflow: hidden; }
-        .t-track { display: flex; width: max-content; animation: scrollT 40s linear infinite; }
-        .t-box { width: 500px; padding: 60px; background: #000; margin-right: 40px; border: 1px solid #111; white-space: normal; }
-        @keyframes scrollT { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        /* --- TESTIMONIALS (AUTO SLIDE) --- */
+        .t-section { background: #000; padding: 120px 0; overflow: hidden; border-top: 1px solid #111; }
+        .t-track { display: flex; width: max-content; animation: slideScroll 45s linear infinite; }
+        .t-card { width: 500px; padding: 60px; background: #0a0a0a; margin-right: 50px; border: 1px solid #1a1a1a; white-space: normal; }
+        @keyframes slideScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
         /* --- CONTACT --- */
         .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; padding: 150px 0; align-items: center; }
-        .input-gold { width: 100%; padding: 20px 0; background: transparent; border: none; border-bottom: 1px solid #222; color: #fff; margin-bottom: 40px; font-size: 16px; }
+        .input-gold { width: 100%; padding: 25px 0; background: transparent; border: none; border-bottom: 1px solid #222; color: #fff; margin-bottom: 40px; font-size: 16px; }
         .input-gold:focus { border-bottom-color: var(--gold); outline: none; }
 
-        /* --- BIG FOOTER --- */
+        /* --- THE BIG FOOTER --- */
         footer { background: #000; padding: 120px 0 40px; border-top: 1px solid #111; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 50px; }
-        .footer-col h4 { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 30px; font-size: 13px; }
-        .footer-col p, .footer-col li { color: #777; font-size: 14px; line-height: 2; list-style: none; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; }
+        .footer-logo { font-size: 1.5rem; letter-spacing: 5px; margin-bottom: 30px; }
+        .footer-col h4 { color: var(--gold); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 35px; font-size: 13px; }
+        .footer-col li { margin-bottom: 18px; font-size: 14px; color: #666; list-style: none; }
         .footer-col a:hover { color: var(--gold); }
-        .social-links { display: flex; gap: 20px; margin-top: 30px; }
-        .social-links a { font-size: 1.6rem; color: var(--gold); }
-        .footer-bottom { text-align: center; margin-top: 100px; padding-top: 30px; border-top: 1px solid #111; color: #333; font-size: 11px; letter-spacing: 2px; }
+        .social-box { display: flex; gap: 25px; margin-top: 30px; }
+        .social-box a { font-size: 1.6rem; color: var(--gold); }
+        .footer-bottom { text-align: center; margin-top: 100px; padding-top: 40px; border-top: 1px solid #111; color: #333; font-size: 11px; letter-spacing: 3px; }
 
         /* --- WHATSAPP --- */
-        .whatsapp-btn { position: fixed; bottom: 40px; right: 40px; background: #25d366; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; z-index: 1000; color: #fff; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .whatsapp-btn { position: fixed; bottom: 40px; right: 40px; background: #25d366; width: 75px; height: 75px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 38px; z-index: 1000; color: #fff; box-shadow: 0 15px 40px rgba(0,0,0,0.5); }
 
-        /* Mobile Adjustments */
         @media (max-width: 1024px) {
-            .award-grid, .service-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
-            .hero-title { font-size: 4rem; }
-            .award-card { height: 450px; }
+            .awards-grid, .service-grid, .contact-grid, .footer-grid { grid-template-columns: 1fr; }
+            .hero-title { font-size: 4.5rem; }
+            .award-frame { height: 500px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- WHATSAPP -->
+    <!-- WHATSAPP FLOAT -->
     <a href="https://wa.me/918328297581" class="whatsapp-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-    <!-- NAV -->
+    <!-- NAVIGATION -->
     <nav id="navbar">
-        <div class="container nav-flex">
-            <a href="#" class="logo">SM PHOTOGRAPHY<span class="gold-text"> MART</span></a>
+        <div class="container nav-content">
+            <a href="#" class="logo">SM PHOTOGRAPHY<span class="gold"> MART</span></a>
             <div class="nav-links">
                 <a href="#hero">Home</a>
-                <a href="#about">Awards</a>
-                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#services">Cinematics</a>
                 <a href="#portfolio">Gallery</a>
-                <a href="#reels">Reels</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
-    <!-- HERO -->
+    <!-- HERO SECTION -->
     <section id="hero">
         <div class="container">
-            <span class="hero-sub" data-aos="fade-up">Cinematic Wedding Studio</span>
-            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">Beyond <br><span class="gold-text">Imagery.</span></h1>
+            <span class="hero-tag" data-aos="fade-up">Cinematic Wedding Studio</span>
+            <h1 class="hero-title" data-aos="fade-up" data-aos-delay="200">Frames of <br><span class="gold">Infinity.</span></h1>
             <div data-aos="fade-up" data-aos-delay="400">
-                <a href="#portfolio" class="btn btn-gold">Explore Gallery</a>
-                <a href="#contact" class="btn" style="margin-left: 20px;">Book Session</a>
+                <a href="#portfolio" class="btn btn-gold">The Portfolio</a>
+                <a href="#contact" class="btn" style="margin-left: 25px;">Book Studio</a>
             </div>
         </div>
     </section>
 
-    <!-- AWARDS -->
+    <!-- AWARDS (SEPARATE LARGE PHOTOS) -->
     <section id="about" class="awards-section container">
-        <div style="text-align: center; margin-bottom: 80px;">
-            <p class="gold-text" style="letter-spacing: 5px; text-transform: uppercase; font-size: 12px; margin-bottom: 15px;">Achievement</p>
-            <h2 style="font-size: 4rem;">Award Winning Artistry</h2>
+        <div style="text-align: center; margin-bottom: 100px;" data-aos="fade-up">
+            <p class="gold" style="letter-spacing: 8px; text-transform: uppercase; font-size: 13px; margin-bottom: 20px;">Excellence</p>
+            <h2 style="font-size: 4.5rem;">Global Recognition</h2>
         </div>
         
-        <div class="award-grid">
+        <div class="awards-grid">
             <!-- Award 1 -->
-            <div class="award-card" data-aos="fade-right">
+            <div class="award-frame" data-aos="fade-right">
                 <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&q=80&w=1200" alt="Award 1">
-                <div class="award-content">
-                    <p>Honored in 2025</p>
-                    <h3>Business Excellence Award 2025 <br>Indian Wedding Photography Festival</h3>
+                <div class="award-label">
+                    <p class="gold">2025 Honors</p>
+                    <h3>Business Excellence Award <br>Indian Wedding Photo Festival</h3>
                 </div>
             </div>
             <!-- Award 2 -->
-            <div class="award-card" data-aos="fade-left">
-                <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&q=80&w=1200" alt="Award 2">
-                <div class="award-content">
-                    <p>Technical Excellence</p>
+            <div class="award-frame" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1473960103265-993121356f39?auto=format&fit=crop&q=80&w=1200" alt="Award 2">
+                <div class="award-label">
+                    <p class="gold">Technical Mastery</p>
                     <h3>DRONE OPERATE <br>EXCELLENCE AWARD</h3>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SERVICES (6 SERVICES - ALL HIGH VISIBILITY) -->
+    <!-- SERVICES (6 SERVICES - FULL VISIBILITY) -->
     <section id="services">
         <div class="container">
-            <h2 style="font-size: 3.5rem; text-align: center;">Bespoke <span class="gold-text">Cinematics</span></h2>
+            <h2 style="font-size: 4rem; text-align: center; margin-bottom: 100px;">Cinematic <span class="gold">Verticals</span></h2>
             <div class="service-grid">
                 <!-- 1 -->
-                <div class="service-item" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800">
+                <div class="service-card" data-aos="fade-up">
+                    <img src="https://images.unsplash.com/photo-1519225495810-7512312215ff?auto=format&fit=crop&q=80&w=800">
                     <div class="service-overlay">
                         <h3>Wedding Films</h3>
-                        <ul><li>• Narrative Edit</li><li>• 4K Cinematic Grade</li></ul>
+                        <ul><li>• Narrative Filmmaking</li><li>• 4K Color Grading</li></ul>
                     </div>
                 </div>
                 <!-- 2 -->
-                <div class="service-item" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1522673607200-1648832cee98?auto=format&fit=crop&q=80&w=800">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800">
                     <div class="service-overlay">
                         <h3>Pre Wedding</h3>
-                        <ul><li>• Exotic Locations</li><li>• Conceptual Teasers</li></ul>
+                        <ul><li>• Concept Trailers</li><li>• Global Locations</li></ul>
                     </div>
                 </div>
                 <!-- 3 -->
-                <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800">
                     <div class="service-overlay">
                         <h3>Haldi Edits</h3>
-                        <ul><li>• Vibrant Color Splash</li><li>• Viral Highlighting</li></ul>
+                        <ul><li>• Vibrant Splash Edits</li><li>• Social Media Mastery</li></ul>
                     </div>
                 </div>
                 <!-- 4 -->
-                <div class="service-item" data-aos="fade-up">
+                <div class="service-card" data-aos="fade-up">
                     <img src="https://images.unsplash.com/photo-1610173827002-62c0f1f05d04?auto=format&fit=crop&q=80&w=800">
                     <div class="service-overlay">
                         <h3>Half Saree</h3>
-                        <ul><li>• Traditional Aesthetics</li><li>• High-End Lighting</li></ul>
+                        <ul><li>• Traditional Beauty</li><li>• Cinematic Lighting</li></ul>
                     </div>
                 </div>
                 <!-- 5 -->
-                <div class="service-item" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
                     <img src="https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=800">
                     <div class="service-overlay">
                         <h3>Birthday Films</h3>
-                        <ul><li>• Lifestyle Documentary</li><li>• Candid Milestones</li></ul>
+                        <ul><li>• Life Documentaries</li><li>• Candid Portraits</li></ul>
                     </div>
                 </div>
                 <!-- 6 -->
-                <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
                     <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&q=80&w=800">
                     <div class="service-overlay">
                         <h3>Teaser Edits</h3>
-                        <ul><li>• 60s Epic Trailers</li><li>• Soundscapes Focus</li></ul>
+                        <ul><li>• 60s Epic Trailers</li><li>• Immersive Sound</li></ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- REELS -->
+    <!-- REEL EDITS -->
     <section id="reels" class="container" style="padding: 100px 0;">
-        <h2 class="gold-text" style="margin-bottom: 50px; font-size: 2.5rem;">Cinematic Reels</h2>
-        <div class="reels-container">
-            <div class="reel-box"><iframe src="https://www.youtube.com/embed/Pj_792i7f7I?controls=0"></iframe></div>
-            <div class="reel-box"><iframe src="https://www.youtube.com/embed/60v2Zp6yR9U?controls=0"></iframe></div>
-            <div class="reel-box"><iframe src="https://www.youtube.com/embed/Sc6396_1Eno?controls=0"></iframe></div>
-            <div class="reel-box"><iframe src="https://www.youtube.com/embed/Pj_792i7f7I?controls=0"></iframe></div>
+        <h2 style="font-size: 3rem; margin-bottom: 50px;"><span class="gold">Trending</span> Reels</h2>
+        <div class="reels-row">
+            <div class="reel-item"><iframe src="https://www.youtube.com/embed/Pj_792i7f7I?controls=0"></iframe></div>
+            <div class="reel-item"><iframe src="https://www.youtube.com/embed/60v2Zp6yR9U?controls=0"></iframe></div>
+            <div class="reel-item"><iframe src="https://www.youtube.com/embed/Sc6396_1Eno?controls=0"></iframe></div>
+            <div class="reel-item"><iframe src="https://www.youtube.com/embed/Pj_792i7f7I?controls=0"></iframe></div>
         </div>
     </section>
 
     <!-- PORTFOLIO -->
     <section id="portfolio" class="container">
-        <h2 style="text-align: center; font-size: 3.5rem; margin-bottom: 60px;">The <span class="gold-text">Gallery</span></h2>
+        <h2 style="text-align: center; font-size: 4rem; margin-bottom: 80px;">The <span class="gold">Legacy</span> Gallery</h2>
         <div class="gallery">
-            <div class="gallery-item" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800"></div>
-            <div class="gallery-item" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800"></div>
-            <div class="gallery-item" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=800"></div>
-            <div class="gallery-item" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=800"></div>
-            <div class="gallery-item" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"></div>
+            <div class="gallery-img" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"></div>
+            <div class="gallery-img" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800"></div>
+            <div class="gallery-img" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=800"></div>
+            <div class="gallery-img" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&q=80&w=800"></div>
+            <div class="gallery-img" data-aos="fade-up"><img src="https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&q=80&w=800"></div>
         </div>
     </section>
 
     <!-- TESTIMONIALS -->
-    <section class="t-slider">
+    <section class="t-section">
         <div class="t-track">
-            <div class="t-box">
-                <p>"They don't just record movies; they create legacies. Every frame of our wedding film feels like it's from a big-budget production."</p>
-                <h4 class="gold-text" style="margin-top: 30px;">Rahul & Sneha</h4>
+            <div class="t-card">
+                <p>"The cinematic quality is unmatched. Every frame of our wedding film feels like it's from a Hollywood production. SM Photography Mart is simply the best."</p>
+                <h4 class="gold" style="margin-top: 35px; font-size: 1.2rem;">Rahul & Sneha</h4>
             </div>
-            <div class="t-box">
-                <p>"SM Photography Mart is the best choice in India for cinematic weddings. Their drone work and storytelling are unparalleled."</p>
-                <h4 class="gold-text" style="margin-top: 30px;">Aman & Kavya</h4>
+            <div class="t-card">
+                <p>"Exceeded all expectations. Their technical skills with drones and cameras combined with their storytelling is what sets them apart in India."</p>
+                <h4 class="gold" style="margin-top: 35px; font-size: 1.2rem;">Aditya & Pooja</h4>
             </div>
-            <div class="t-box">
-                <p>"They don't just record movies; they create legacies. Every frame of our wedding film feels like it's from a big-budget production."</p>
-                <h4 class="gold-text" style="margin-top: 30px;">Rahul & Sneha</h4>
+            <div class="t-card">
+                <p>"The cinematic quality is unmatched. Every frame of our wedding film feels like it's from a Hollywood production. SM Photography Mart is simply the best."</p>
+                <h4 class="gold" style="margin-top: 35px; font-size: 1.2rem;">Rahul & Sneha</h4>
             </div>
         </div>
     </section>
@@ -309,18 +314,18 @@
     <section id="contact" class="container">
         <div class="contact-grid">
             <div data-aos="fade-right">
-                <h2 style="font-size: 4rem;">Let's Write <br><span class="gold-text">History.</span></h2>
-                <p style="color: #555; margin: 40px 0; font-size: 1.1rem;">Reserve your dates for a premium cinematic experience. We document love stories worldwide.</p>
-                <p class="gold-text" style="font-size: 2.5rem;">+91 8328297581</p>
+                <h2 style="font-size: 4.5rem;">Let's Create <br><span class="gold">History.</span></h2>
+                <p style="color: #666; margin: 40px 0; font-size: 1.2rem;">Available for luxury weddings worldwide. Document your legacy with our cinematic lens.</p>
+                <p class="gold" style="font-size: 2.5rem;">+91 8328297581</p>
             </div>
-            <div data-aos="fade-left" style="background: #080808; padding: 60px; border: 1px solid #111;">
+            <div data-aos="fade-left" style="background: #080808; padding: 70px; border: 1px solid #111;">
                 <form id="waForm">
                     <input type="text" id="name" placeholder="FULL NAME" required class="input-gold">
                     <input type="tel" id="phone" placeholder="PHONE NUMBER" required class="input-gold">
                     <select id="event" class="input-gold">
                         <option>WEDDING FILM</option>
                         <option>PRE-WEDDING</option>
-                        <option>HALDI EDIT</option>
+                        <option>REEL CINEMATICS</option>
                     </select>
                     <button type="submit" class="btn btn-gold" style="width: 100%;">Connect on WhatsApp</button>
                 </form>
@@ -333,9 +338,9 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-col">
-                    <div class="logo" style="margin-bottom: 25px;">SM PHOTOGRAPHY<span class="gold-text"> MART</span></div>
-                    <p>A luxury cinematic studio dedicated to documenting love stories with elegance, emotion, and world-class film techniques since 2018.</p>
-                    <div class="social-links">
+                    <div class="footer-logo">SM PHOTOGRAPHY<span class="gold"> MART</span></div>
+                    <p>A luxury cinematic studio dedicated to the art of documenting human emotions through world-class film techniques. Creating visual legacies since 2018.</p>
+                    <div class="social-box">
                         <a href="https://www.instagram.com/smphotographymart_official/"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.youtube.com/@smphotographymartStudio/videos"><i class="fab fa-youtube"></i></a>
                         <a href="https://www.facebook.com/Smphotographymart/"><i class="fab fa-facebook"></i></a>
@@ -345,26 +350,26 @@
                     <h4>Navigation</h4>
                     <ul>
                         <li><a href="#hero">Home</a></li>
-                        <li><a href="#about">Recognition</a></li>
+                        <li><a href="#about">Awards</a></li>
                         <li><a href="#services">Cinematics</a></li>
                         <li><a href="#portfolio">Gallery</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Cinematics</h4>
+                    <h4>Studio Focus</h4>
                     <ul>
                         <li>Wedding Cinema</li>
-                        <li>Aerial Shoots</li>
-                        <li>Reel Production</li>
-                        <li>Creative Post</li>
+                        <li>Drone Operations</li>
+                        <li>Post Production</li>
+                        <li>Storytelling</li>
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Studio Info</h4>
+                    <h4>Inquiries</h4>
                     <ul>
                         <li>+91 8328297581</li>
                         <li>info@smphotomart.com</li>
-                        <li>Worldwide Booking</li>
+                        <li>India | Worldwide</li>
                     </ul>
                 </div>
             </div>
@@ -377,18 +382,23 @@
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        AOS.init({ duration: 1200, once: true });
+        AOS.init({ duration: 1500, once: true });
+
+        // Navbar Animation
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
             if (window.scrollY > 50) nav.classList.add('scrolled');
             else nav.classList.remove('scrolled');
         });
+
+        // WhatsApp Form Submission
         document.getElementById('waForm').onsubmit = (e) => {
             e.preventDefault();
             const name = document.getElementById('name').value;
             const event = document.getElementById('event').value;
             window.open(`https://wa.me/918328297581?text=Hi, I am ${name}, interested in ${event} services.`, '_blank');
         };
+
         document.getElementById('year').innerText = new Date().getFullYear();
     </script>
 </body>
